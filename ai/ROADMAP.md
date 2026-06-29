@@ -3,8 +3,8 @@
 ## Fase 1
 
 - [x] Estrutura inicial
-- [ ] Tema
-- [ ] Navegação
+- [x] Tema
+- [x] Navegação
 - [x] Banco
 
 ---

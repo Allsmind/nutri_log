@@ -2,11 +2,11 @@
 
 Feature
 
-Estrutura inicial do projeto.
+Configurar tema e estruturar navegação.
 
 Objetivo
 
-Criar o projeto Kotlin Multiplatform.
+Criar a base do tema Material 3 e configurar o grafo de navegação utilizando Navigation Compose.
 
 Status
 
@@ -14,7 +14,7 @@ Concluído.
 
 Próximo passo
 
-Configurar tema e estruturar navegação.
+Implementar o cadastro de usuário (Fase 2).
 
 Não implementar ainda
 

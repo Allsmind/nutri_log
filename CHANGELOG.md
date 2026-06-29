@@ -13,3 +13,7 @@ All notable changes to this project will be documented in this file.
 - Basic Material 3 Compose UI Welcome Screen.
 - Android application entry points (`MainActivity` and `NutriLogApplication`) and Android manifest configuration.
 - Gradle wrapper files for standard builds.
+- Custom Material 3 light/dark mode color schemes in `Color.kt` and application typography in `Type.kt`.
+- Custom `NutriLogTheme` composition provider.
+- Navigation Compose setup with `NavGraph` and routes.
+- Fully styled `WelcomeScreen` and profile form `RegisterScreen`.
