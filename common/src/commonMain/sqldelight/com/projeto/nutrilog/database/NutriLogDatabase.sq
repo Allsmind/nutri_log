@@ -16,3 +16,21 @@ VALUES (?, ?, ?, ?, ?, ?);
 
 clearUser:
 DELETE FROM UserEntity;
+
+CREATE TABLE DailyProgressEntity (
+    date TEXT NOT NULL PRIMARY KEY,
+    caloriesConsumed INTEGER NOT NULL,
+    proteinConsumed REAL NOT NULL,
+    carbConsumed REAL NOT NULL,
+    fatConsumed REAL NOT NULL
+);
+
+getProgressForDate:
+SELECT * FROM DailyProgressEntity WHERE date = ?;
+
+insertProgress:
+INSERT OR REPLACE INTO DailyProgressEntity(date, caloriesConsumed, proteinConsumed, carbConsumed, fatConsumed)
+VALUES (?, ?, ?, ?, ?);
+
+clearProgress:
+DELETE FROM DailyProgressEntity;

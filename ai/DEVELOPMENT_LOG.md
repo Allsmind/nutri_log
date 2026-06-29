@@ -125,3 +125,49 @@ Nenhum.
 Próximo passo
 
 Implementar o Dashboard completo (Fase 3).
+
+## Sessão 004
+
+Data
+
+2026-06-29
+
+Feature
+
+Dashboard (Fase 3).
+
+Implementado
+
+- Criação da tabela DailyProgressEntity e queries getProgressForDate, insertProgress, clearProgress em SQLDelight
+- Criação das interfaces de repositório ProgressRepository e ProgressRepositoryImpl
+- Criados GetProgressUseCase e AddConsumptionUseCase para o fluxo do Dashboard
+- Atualizado o ClearUserUseCase para resetar também o progresso do usuário
+- Criado o DateUtils (expect/actual) para obter a data atual de forma nativa e offline em KMP
+- Criado o DashboardViewModel para gerenciar dados do dia e registrar consumo rápido (Quick Add)
+- Criada a tela DashboardScreen com visualização de calorias consumidas/restantes e barras de progresso de macronutrientes
+- Injetadas novas dependências no Koin
+- Atualizado o App.kt para renderizar a tela de Dashboard quando o usuário estiver registrado
+
+Arquivos alterados
+
+- common/src/commonMain/sqldelight/com/projeto/nutrilog/database/NutriLogDatabase.sq
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/repository/ProgressRepository.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/data/repository/ProgressRepositoryImpl.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/GetProgressUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/AddConsumptionUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/ClearUserUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/utils/DateUtils.kt
+- common/src/androidMain/kotlin/com/projeto/nutrilog/utils/DateUtils.android.kt
+- common/src/iosMain/kotlin/com/projeto/nutrilog/utils/DateUtils.ios.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/App.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar o Banco de alimentos (Fase 4).

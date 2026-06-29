@@ -2,11 +2,11 @@
 
 Feature
 
-Cadastro do usuário (Fase 2).
+Dashboard (Fase 3).
 
 Objetivo
 
-Implementar a persistência de perfil, validações de input e fluxo de cadastro do usuário com Koin, SQLDelight e MVI/MVVM.
+Criar a tela de Dashboard com acompanhamento dinâmico de calorias e macros consumidos vs meta do usuário, incluindo a funcionalidade de Quick Add.
 
 Status
 
@@ -14,7 +14,7 @@ Concluído.
 
 Próximo passo
 
-Implementar o Dashboard (Fase 3).
+Implementar o Banco de alimentos (Fase 4).
 
 Não implementar ainda
 

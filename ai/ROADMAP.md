@@ -17,7 +17,7 @@
 
 ## Fase 3
 
-- [ ] Dashboard
+- [x] Dashboard
 
 ---
 
