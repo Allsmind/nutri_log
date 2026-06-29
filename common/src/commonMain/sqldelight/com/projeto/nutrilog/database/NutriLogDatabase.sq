@@ -1,0 +1,15 @@
+CREATE TABLE UserEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    calorieGoal INTEGER NOT NULL,
+    proteinGoal REAL NOT NULL,
+    carbGoal REAL NOT NULL,
+    fatGoal REAL NOT NULL
+);
+
+getUser:
+SELECT * FROM UserEntity LIMIT 1;
+
+insertUser:
+INSERT OR REPLACE INTO UserEntity(id, name, calorieGoal, proteinGoal, carbGoal, fatGoal)
+VALUES (?, ?, ?, ?, ?, ?);
