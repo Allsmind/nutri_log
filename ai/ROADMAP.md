@@ -11,7 +11,7 @@
 
 ## Fase 2
 
-- [ ] Cadastro do usuário
+- [x] Cadastro do usuário
 
 ---
 

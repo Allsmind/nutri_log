@@ -16,11 +16,11 @@ sealed class Screen(val route: String) {
 @Composable
 fun NavGraph(
     navController: NavHostController = rememberNavController(),
-    startDestination: String = Screen.Welcome.route
+    onRegistrationSuccess: () -> Unit
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = Screen.Welcome.route
     ) {
         composable(Screen.Welcome.route) {
             WelcomeScreen(
@@ -31,6 +31,7 @@ fun NavGraph(
         }
         composable(Screen.Register.route) {
             RegisterScreen(
+                onRegistrationSuccess = onRegistrationSuccess,
                 onNavigateBack = {
                     navController.popBackStack()
                 }

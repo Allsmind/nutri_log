@@ -13,3 +13,6 @@ SELECT * FROM UserEntity LIMIT 1;
 insertUser:
 INSERT OR REPLACE INTO UserEntity(id, name, calorieGoal, proteinGoal, carbGoal, fatGoal)
 VALUES (?, ?, ?, ?, ?, ?);
+
+clearUser:
+DELETE FROM UserEntity;

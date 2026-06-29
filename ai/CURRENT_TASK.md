@@ -2,11 +2,11 @@
 
 Feature
 
-Configurar tema e estruturar navegação.
+Cadastro do usuário (Fase 2).
 
 Objetivo
 
-Criar a base do tema Material 3 e configurar o grafo de navegação utilizando Navigation Compose.
+Implementar a persistência de perfil, validações de input e fluxo de cadastro do usuário com Koin, SQLDelight e MVI/MVVM.
 
 Status
 
@@ -14,11 +14,10 @@ Concluído.
 
 Próximo passo
 
-Implementar o cadastro de usuário (Fase 2).
+Implementar o Dashboard (Fase 3).
 
 Não implementar ainda
 
-- Dashboard
 - Foods
 - Meals
 - Statistics

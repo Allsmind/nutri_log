@@ -17,12 +17,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
+    onRegistrationSuccess: () -> Unit,
     onNavigateBack: () -> Unit
 ) {
+    val viewModel: RegisterViewModel = koinViewModel()
+
+    LaunchedEffect(viewModel) {
+        viewModel.registrationSuccess.collect {
+            onRegistrationSuccess()
+        }
+    }
     var name by remember { mutableStateOf("") }
     var calories by remember { mutableStateOf("") }
     var protein by remember { mutableStateOf("") }
@@ -153,7 +162,11 @@ fun RegisterScreen(
                 // Submit Button
                 Button(
                     onClick = {
-                        // TODO: Save user to db in Phase 2
+                        val cal = calories.toIntOrNull() ?: 0
+                        val prot = protein.toDoubleOrNull() ?: 0.0
+                        val carb = carbs.toDoubleOrNull() ?: 0.0
+                        val f = fat.toDoubleOrNull() ?: 0.0
+                        viewModel.registerUser(name, cal, prot, carb, f)
                     },
                     modifier = Modifier
                         .fillMaxWidth()

@@ -17,3 +17,8 @@ All notable changes to this project will be documented in this file.
 - Custom `NutriLogTheme` composition provider.
 - Navigation Compose setup with `NavGraph` and routes.
 - Fully styled `WelcomeScreen` and profile form `RegisterScreen`.
+- User profile data persistence using SQLDelight database and expected/actual platform SQLite drivers.
+- Clean Architecture data layer setup (UserRepository, UserRepositoryImpl, GetUserUseCase, SaveUserUseCase, ClearUserUseCase).
+- Koin DI dependency configurations for repositories, UseCases, RegisterViewModel and MainViewModel.
+- Reactive app routing flow: automatically boot/route to onboarding or dashboard depending on database status.
+- Premium ProfileDashboardPlaceholderScreen UI for registered users showing macro and calorie targets with a reset profile feature.
