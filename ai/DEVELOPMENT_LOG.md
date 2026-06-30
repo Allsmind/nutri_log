@@ -452,3 +452,35 @@ Nenhum.
 Próximo passo
 
 Nenhum. Projeto 100% concluído!
+
+## Sessão 012
+
+Data
+
+2026-06-30
+
+Feature
+
+Correção de Bug (Crash de Koin Dependency Resolution).
+
+Implementado
+
+- Corrigida a falha contínua (crash de Koin Injection) ao navegar para a tela de alimentos.
+- Adicionadas as injeções em falta no `Koin.kt`:
+  - `single<FoodRepository> { FoodRepositoryImpl(get()) }`
+  - `single { SearchFoodsUseCase(get()) }`
+  - `single { SaveCustomFoodUseCase(get()) }`
+  - `viewModel { FoodViewModel(get(), get(), get()) }`
+- Realizado o build Gradle final comprovando integridade e funcionamento do app.
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+
+Problemas
+
+- Resolvido crash de injeção de dependência na navegação.
+
+Próximo passo
+
+Nenhum. Projeto 100% concluído!
