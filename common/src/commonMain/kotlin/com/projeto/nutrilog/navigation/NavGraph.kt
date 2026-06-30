@@ -21,6 +21,7 @@ import com.projeto.nutrilog.presentation.dashboard.DashboardViewModel
 import com.projeto.nutrilog.presentation.dashboard.DashboardUiState
 import com.projeto.nutrilog.presentation.food.FoodDatabaseScreen
 import com.projeto.nutrilog.presentation.statistics.ScreenStatistics
+import com.projeto.nutrilog.presentation.recipe.CreateRecipeScreen
 import org.koin.compose.viewmodel.koinViewModel
 
 sealed class Screen(val route: String) {
@@ -29,6 +30,7 @@ sealed class Screen(val route: String) {
     object Dashboard : Screen("dashboard")
     object FoodDatabase : Screen("food_database")
     object Statistics : Screen("statistics")
+    object CreateRecipe : Screen("create_recipe")
 }
 
 @Composable
@@ -112,12 +114,23 @@ fun NavGraph(
             FoodDatabaseScreen(
                 onNavigateBack = {
                     navController.popBackStack()
+                },
+                onNavigateToCreateRecipe = {
+                    navController.navigate(Screen.CreateRecipe.route)
                 }
             )
         }
 
         composable(Screen.Statistics.route) {
             ScreenStatistics(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Screen.CreateRecipe.route) {
+            CreateRecipeScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }

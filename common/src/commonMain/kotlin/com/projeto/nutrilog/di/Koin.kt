@@ -21,6 +21,7 @@ import com.projeto.nutrilog.presentation.register.RegisterViewModel
 import com.projeto.nutrilog.presentation.main.MainViewModel
 import com.projeto.nutrilog.presentation.dashboard.DashboardViewModel
 import com.projeto.nutrilog.presentation.statistics.StatisticsViewModel
+import com.projeto.nutrilog.presentation.recipe.CreateRecipeViewModel
 import org.koin.core.module.dsl.viewModel
 
 expect fun platformModule(): Module
@@ -51,4 +52,5 @@ fun commonModule() = module {
     viewModel { MainViewModel(get(), get()) }
     viewModel { DashboardViewModel(get(), get(), get(), get()) }
     viewModel { StatisticsViewModel(get(), get()) }
+    viewModel { CreateRecipeViewModel(get(), get()) }
 }

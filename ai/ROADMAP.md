@@ -35,7 +35,7 @@
 
 ## Fase 6
 
-- [ ] Receitas
+- [x] Receitas
 
 ---
 

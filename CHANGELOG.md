@@ -47,3 +47,8 @@ All notable changes to this project will be documented in this file.
 - Average daily macronutrients progress rows (Protein, Carbs, Fat) compared to user goals.
 - Action Buttons Row on the Dashboard containing search foods and ver estatísticas direct entries.
 - Full Koin dependency wiring for the Statistics components.
+- Recipe scaling logic to consolidate ingredients and automatically calculate macro/calorie values per 100g.
+- Clean Architecture recipe layer (CreateRecipeViewModel reusing existing SaveCustomFoodUseCase).
+- Recipe creation UI (CreateRecipeScreen) displaying dynamic preview of consolidated totals, ingredient list, delete controls, and dialog selectors.
+- Extended Floating Action Button (FAB) on FoodDatabaseScreen for recipe creation.
+- Full Koin dependency wiring for the Recipe creation components.

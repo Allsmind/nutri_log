@@ -26,7 +26,8 @@ import org.koin.compose.viewmodel.koinViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FoodDatabaseScreen(
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
+    onNavigateToCreateRecipe: () -> Unit
 ) {
     val viewModel: FoodViewModel = koinViewModel()
     val foods by viewModel.foods.collectAsState()
@@ -108,16 +109,29 @@ fun FoodDatabaseScreen(
             }
         }
 
-        // FAB to add new custom food
-        FloatingActionButton(
-            onClick = { showCreateFoodDialog = true },
+        // Bottom right buttons: Nova Receita and Novo Alimento
+        Row(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(24.dp),
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(imageVector = Icons.Default.Add, contentDescription = "Novo Alimento")
+            ExtendedFloatingActionButton(
+                onClick = onNavigateToCreateRecipe,
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = MaterialTheme.colorScheme.onSecondary,
+                icon = { Icon(imageVector = Icons.Default.Add, contentDescription = null) },
+                text = { Text("Nova Receita") }
+            )
+
+            FloatingActionButton(
+                onClick = { showCreateFoodDialog = true },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
+            ) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Novo Alimento")
+            }
         }
 
         // Consume Dialog

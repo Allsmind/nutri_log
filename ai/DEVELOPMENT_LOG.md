@@ -312,3 +312,41 @@ Nenhum.
 Próximo passo
 
 Implementar as Receitas (Fase 6).
+
+## Sessão 008
+
+Data
+
+2026-06-30
+
+Feature
+
+Receitas (Fase 6).
+
+Implementado
+
+- Otimização YAGNI (ponytail): Em vez de criar um conjunto complexo de tabelas adicionais e joins de banco para receitas/ingredientes, as receitas são calculadas e escaladas para 100g no momento de sua criação e salvas diretamente na tabela global de alimentos (FoodEntity). Isso possibilita que receitas sejam listadas, pesquisadas e consumidas da mesma maneira que qualquer alimento básico (reuso de toda a pipeline).
+- Criado o CreateRecipeViewModel para gerenciar a adição/remoção temporária de ingredientes, busca rápida de alimentos e cálculo matemático consolidado dos macronutrientes da receita escalado para 100g.
+- Criada a tela CreateRecipeScreen contendo:
+  - Input para nome da receita.
+  - Card dinâmico atualizado em tempo real mostrando os macros consolidados (calorias, proteínas, carboidratos e gorduras) conforme novos ingredientes são adicionados.
+  - Listagem dos ingredientes adicionados exibindo pesos individuais e opção para exclusão.
+  - Diálogos popups elegantes para busca de ingrediente e seleção de quantidade (gramas).
+- Adicionado o botão "Nova Receita" usando um ExtendedFloatingActionButton no FoodDatabaseScreen.
+- Ajustadas as rotas de navegação no NavGraph.kt e injeções de dependência no Koin.kt.
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/recipe/CreateRecipeViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/recipe/CreateRecipeScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodDatabaseScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/navigation/NavGraph.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar o Histórico (Fase 7).

@@ -2,11 +2,11 @@
 
 Feature
 
-Estatísticas (Fase 8).
+Receitas (Fase 6).
 
 Objetivo
 
-Implementar a visualização histórica de consumo diário nos últimos 7 dias com médias diárias e gráficos de barras responsivos em Compose.
+Implementar a criação de receitas compostas (combinação de múltiplos alimentos) calculando os valores nutricionais por 100g e salvando diretamente na tabela FoodEntity.
 
 Status
 
@@ -14,7 +14,7 @@ Concluído.
 
 Próximo passo
 
-Implementar as Receitas (Fase 6).
+Implementar o Histórico (Fase 7).
 
 Não implementar ainda
 
