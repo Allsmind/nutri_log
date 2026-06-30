@@ -16,9 +16,11 @@ import com.projeto.nutrilog.domain.usecase.ClearUserUseCase
 import com.projeto.nutrilog.domain.usecase.GetMealLogsUseCase
 import com.projeto.nutrilog.domain.usecase.AddMealLogUseCase
 import com.projeto.nutrilog.domain.usecase.DeleteMealLogUseCase
+import com.projeto.nutrilog.domain.usecase.GetDailySummariesUseCase
 import com.projeto.nutrilog.presentation.register.RegisterViewModel
 import com.projeto.nutrilog.presentation.main.MainViewModel
 import com.projeto.nutrilog.presentation.dashboard.DashboardViewModel
+import com.projeto.nutrilog.presentation.statistics.StatisticsViewModel
 import org.koin.core.module.dsl.viewModel
 
 expect fun platformModule(): Module
@@ -44,7 +46,9 @@ fun commonModule() = module {
     single { GetMealLogsUseCase(get()) }
     single { AddMealLogUseCase(get()) }
     single { DeleteMealLogUseCase(get()) }
+    single { GetDailySummariesUseCase(get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { MainViewModel(get(), get()) }
     viewModel { DashboardViewModel(get(), get(), get(), get()) }
+    viewModel { StatisticsViewModel(get(), get()) }
 }

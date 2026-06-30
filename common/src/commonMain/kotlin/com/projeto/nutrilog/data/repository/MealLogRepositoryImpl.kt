@@ -2,6 +2,7 @@ package com.projeto.nutrilog.data.repository
 
 import com.projeto.nutrilog.database.MealLogEntity
 import com.projeto.nutrilog.database.NutriLogDatabase
+import com.projeto.nutrilog.domain.repository.DailySummary
 import com.projeto.nutrilog.domain.repository.MealLogRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -49,5 +50,18 @@ class MealLogRepositoryImpl(
     override suspend fun clearAllMealLogs(): Unit = withContext(Dispatchers.IO) {
         // ponytail: execute database delete on Dispatchers.IO
         queries.clearAllMealLogs()
+    }
+
+    override suspend fun getDailySummaries(limit: Long): List<DailySummary> = withContext(Dispatchers.IO) {
+        // ponytail: execute group sum aggregation on Dispatchers.IO and map result rows
+        queries.getDailySummaries(limit).executeAsList().map { row ->
+            DailySummary(
+                date = row.date,
+                totalCalories = row.totalCalories ?: 0L,
+                totalProtein = row.totalProtein ?: 0.0,
+                totalCarbs = row.totalCarbs ?: 0.0,
+                totalFat = row.totalFat ?: 0.0
+            )
+        }
     }
 }

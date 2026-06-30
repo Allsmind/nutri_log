@@ -40,3 +40,10 @@ All notable changes to this project will be documented in this file.
 - Visual delete options to remove individual food log items directly from the Dashboard.
 - Meal selection selector chip inside the consumption dialog on the Food Database screen.
 - Cleanup: Removed obsolete files from the previous progress tracking implementation.
+- Daily summaries aggregation query (`getDailySummaries`) in SQLDelight to group calories/macros by date.
+- Clean Architecture consolidation layer (`getDailySummaries` in `MealLogRepository` / `MealLogRepositoryImpl` and `GetDailySummariesUseCase`).
+- Statistics UI (`ScreenStatistics`) with historical summaries of the last 7 days.
+- Custom bar chart built using responsive Compose Layouts showing calorie limits and highlight coloring for exceeded targets.
+- Average daily macronutrients progress rows (Protein, Carbs, Fat) compared to user goals.
+- Action Buttons Row on the Dashboard containing search foods and ver estatísticas direct entries.
+- Full Koin dependency wiring for the Statistics components.

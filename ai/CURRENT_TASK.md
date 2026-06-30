@@ -2,11 +2,11 @@
 
 Feature
 
-Registro de refeições (Fase 5).
+Estatísticas (Fase 8).
 
 Objetivo
 
-Implementar a persistência de registros individuais de alimentos consumidos agrupados por refeições (Café da Manhã, Almoço, Jantar, Lanche) e calcular dinamicamente os totais diários.
+Implementar a visualização histórica de consumo diário nos últimos 7 dias com médias diárias e gráficos de barras responsivos em Compose.
 
 Status
 
@@ -14,11 +14,11 @@ Concluído.
 
 Próximo passo
 
-Implementar as Estatísticas (Fase 6).
+Implementar as Receitas (Fase 6).
 
 Não implementar ainda
 
-- Receitas
+Nenhum.
 
 Dependências
 

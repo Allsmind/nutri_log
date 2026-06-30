@@ -67,3 +67,15 @@ SELECT * FROM FoodEntity WHERE name LIKE ? ORDER BY name ASC;
 insertFood:
 INSERT OR REPLACE INTO FoodEntity(name, caloriesPer100g, proteinPer100g, carbPer100g, fatPer100g)
 VALUES (?, ?, ?, ?, ?);
+
+getDailySummaries:
+SELECT 
+    date,
+    SUM(calories) AS totalCalories,
+    SUM(protein) AS totalProtein,
+    SUM(carbs) AS totalCarbs,
+    SUM(fat) AS totalFat
+FROM MealLogEntity
+GROUP BY date
+ORDER BY date ASC
+LIMIT ?;

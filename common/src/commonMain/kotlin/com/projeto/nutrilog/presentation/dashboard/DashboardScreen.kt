@@ -31,6 +31,7 @@ fun DashboardScreen(
     mealGroups: List<String>,
     onQuickAdd: (calories: Int, protein: Double, carbs: Double, fat: Double) -> Unit,
     onNavigateToFoodDatabase: () -> Unit,
+    onNavigateToStatistics: () -> Unit,
     onDeleteMealLog: (id: Long) -> Unit,
     onResetData: () -> Unit
 ) {
@@ -75,23 +76,46 @@ fun DashboardScreen(
                 textAlign = TextAlign.Center
             )
 
-            // Search Food Database Button
-            Button(
-                onClick = onNavigateToFoodDatabase,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.secondary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary
-                )
+            // Row with Action Buttons
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(
-                    text = "Buscar no Banco de Alimentos",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
-                )
+                Button(
+                    onClick = onNavigateToFoodDatabase,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.onSecondary
+                    )
+                ) {
+                    Text(
+                        text = "Buscar Alimentos",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp
+                    )
+                }
+
+                Button(
+                    onClick = onNavigateToStatistics,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.tertiary,
+                        contentColor = MaterialTheme.colorScheme.onTertiary
+                    )
+                ) {
+                    Text(
+                        text = "Ver Estatísticas",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 14.sp
+                    )
+                }
             }
 
             // Calories Progress Card

@@ -268,3 +268,47 @@ Nenhum.
 Próximo passo
 
 Implementar as Estatísticas (Fase 6).
+
+## Sessão 007
+
+Data
+
+2026-06-30
+
+Feature
+
+Estatísticas (Fase 8).
+
+Implementado
+
+- Criação da query getDailySummaries no SQLDelight para consolidar calorias e macros agrupados por data nos últimos dias
+- Atualização do repositório MealLogRepository e MealLogRepositoryImpl para carregar a consolidação diária
+- Criação do Caso de Uso GetDailySummariesUseCase
+- Criado o StatisticsViewModel para ler os dados consolidados do histórico e metas do usuário
+- Criada a tela ScreenStatistics com:
+  - Card de médias diárias dos últimos 7 dias comparando com as metas.
+  - Gráfico de barras interativo e responsivo em Compose Layouts (sem complexidade de Canvas pixel-math).
+  - Alerta visual destacando dias em que a meta calórica foi excedida.
+  - Distribuição média de macronutrientes com barras de progresso lineares.
+- Adicionado botão "Ver Estatísticas" no DashboardScreen, criando um fluxo em Row com os botões de ação principal do app
+- Adicionadas rotas de navegação no NavGraph.kt e injeções de dependência no Koin.kt
+
+Arquivos alterados
+
+- common/src/commonMain/sqldelight/com/projeto/nutrilog/database/NutriLogDatabase.sq
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/repository/MealLogRepository.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/data/repository/MealLogRepositoryImpl.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/GetDailySummariesUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/statistics/StatisticsViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/statistics/StatisticsScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/navigation/NavGraph.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar as Receitas (Fase 6).

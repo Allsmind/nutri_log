@@ -47,7 +47,7 @@
 
 ## Fase 8
 
-- [ ] Estatísticas
+- [x] Estatísticas
 
 ---
 
