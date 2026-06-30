@@ -2,11 +2,11 @@
 
 Feature
 
-Banco de alimentos (Fase 4).
+Registro de refeições (Fase 5).
 
 Objetivo
 
-Criar a funcionalidade de banco de alimentos, permitindo busca de alimentos pré-cadastrados, criação de alimentos personalizados e registro de consumo a partir do peso consumido.
+Implementar a persistência de registros individuais de alimentos consumidos agrupados por refeições (Café da Manhã, Almoço, Jantar, Lanche) e calcular dinamicamente os totais diários.
 
 Status
 
@@ -14,11 +14,10 @@ Concluído.
 
 Próximo passo
 
-Implementar o Registro de refeições (Fase 5).
+Implementar as Estatísticas (Fase 6).
 
 Não implementar ainda
 
-- Statistics
 - Receitas
 
 Dependências

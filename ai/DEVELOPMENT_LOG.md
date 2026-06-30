@@ -219,3 +219,52 @@ Nenhum.
 Próximo passo
 
 Implementar o Registro de refeições (Fase 5).
+
+## Sessão 006
+
+Data
+
+2026-06-29
+
+Feature
+
+Registro de refeições (Fase 5).
+
+Implementado
+
+- Remoção da tabela DailyProgressEntity e migração de toda a lógica para cálculo dinâmico a partir dos logs de refeição, evitando dados redundantes e inconsistentes (YAGNI/ponytail)
+- Criação da tabela MealLogEntity no SQLDelight com queries insertMealLog, getMealLogsForDate, deleteMealLog, clearAllMealLogs
+- Criação das interfaces de repositório MealLogRepository e MealLogRepositoryImpl
+- Criados os Casos de Uso GetMealLogsUseCase, AddMealLogUseCase, DeleteMealLogUseCase
+- Atualizado o ClearUserUseCase para limpar a tabela de refeições consumidas
+- Atualizado o DashboardViewModel para computar os totais de calorias/macros consumidos dinamicamente e agrupar registros por refeição
+- Atualizada a tela DashboardScreen para exibir a lista de alimentos consumidos no dia agrupados por tipo de refeição (Café da Manhã, Almoço, Café da Tarde, Jantar, Consumo Rápido), com a opção de excluir itens individualmente
+- Atualizada a tela FoodDatabaseScreen para exibir um seletor visual em chips permitindo escolher a refeição ao consumir um alimento
+- Removidos arquivos obsoletos de rastreamento de progresso anterior (ProgressRepository.kt, ProgressRepositoryImpl.kt, GetProgressUseCase.kt, AddConsumptionUseCase.kt)
+- Ajustada a injeção do Koin e a fiação de rotas de navegação no NavGraph e App.kt
+
+Arquivos alterados
+
+- common/src/commonMain/sqldelight/com/projeto/nutrilog/database/NutriLogDatabase.sq
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/repository/MealLogRepository.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/data/repository/MealLogRepositoryImpl.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/GetMealLogsUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/AddMealLogUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/DeleteMealLogUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/ClearUserUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodDatabaseScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/navigation/NavGraph.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/App.kt
+- Deletados: ProgressRepository.kt, ProgressRepositoryImpl.kt, GetProgressUseCase.kt, AddConsumptionUseCase.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar as Estatísticas (Fase 6).

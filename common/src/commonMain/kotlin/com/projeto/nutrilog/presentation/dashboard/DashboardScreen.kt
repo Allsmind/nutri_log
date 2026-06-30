@@ -6,6 +6,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,15 +20,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.projeto.nutrilog.database.DailyProgressEntity
+import com.projeto.nutrilog.database.MealLogEntity
 import com.projeto.nutrilog.database.UserEntity
 
 @Composable
 fun DashboardScreen(
     user: UserEntity,
-    progress: DailyProgressEntity,
+    progress: DailyProgress,
+    mealLogs: Map<String, List<MealLogEntity>>,
+    mealGroups: List<String>,
     onQuickAdd: (calories: Int, protein: Double, carbs: Double, fat: Double) -> Unit,
     onNavigateToFoodDatabase: () -> Unit,
+    onDeleteMealLog: (id: Long) -> Unit,
     onResetData: () -> Unit
 ) {
     var quickCalories by remember { mutableStateOf("") }
@@ -200,6 +205,81 @@ fun DashboardScreen(
                         target = user.fatGoal,
                         color = Color(0xFF3498DB)
                     )
+                }
+            }
+
+            // Grouped Meal Logs
+            Text(
+                text = "Refeições de Hoje",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.align(Alignment.Start).padding(top = 8.dp)
+            )
+
+            mealGroups.forEach { group ->
+                val logs = mealLogs[group] ?: emptyList()
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f)
+                    ),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            text = group,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.secondary
+                        )
+
+                        if (logs.isEmpty()) {
+                            Text(
+                                text = "Nenhum alimento registrado",
+                                fontSize = 12.sp,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+                            )
+                        } else {
+                            logs.forEach { log ->
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            text = log.foodName,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            fontWeight = FontWeight.SemiBold,
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                        Text(
+                                            text = "${log.weightGrams}g - ${log.calories} kcal (P: ${log.protein.toInt()}g C: ${log.carbs.toInt()}g G: ${log.fat.toInt()}g)",
+                                            fontSize = 11.sp,
+                                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                                        )
+                                    }
+
+                                    IconButton(
+                                        onClick = { onDeleteMealLog(log.id) },
+                                        modifier = Modifier.size(36.dp)
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Delete,
+                                            contentDescription = "Excluir",
+                                            tint = MaterialTheme.colorScheme.error,
+                                            modifier = Modifier.size(20.dp)
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

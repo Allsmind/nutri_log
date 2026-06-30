@@ -86,11 +86,16 @@ fun NavGraph(
                     DashboardScreen(
                         user = dashState.user,
                         progress = dashState.progress,
+                        mealLogs = dashState.mealLogs,
+                        mealGroups = dashState.mealGroups,
                         onQuickAdd = { calories, protein, carbs, fat ->
                             dashboardViewModel.quickAdd(calories, protein, carbs, fat)
                         },
                         onNavigateToFoodDatabase = {
                             navController.navigate(Screen.FoodDatabase.route)
+                        },
+                        onDeleteMealLog = { id ->
+                            dashboardViewModel.deleteLog(id)
                         },
                         onResetData = onResetData
                     )

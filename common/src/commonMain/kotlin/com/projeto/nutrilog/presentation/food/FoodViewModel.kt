@@ -3,7 +3,7 @@ package com.projeto.nutrilog.presentation.food
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.projeto.nutrilog.database.FoodEntity
-import com.projeto.nutrilog.domain.usecase.AddConsumptionUseCase
+import com.projeto.nutrilog.domain.usecase.AddMealLogUseCase
 import com.projeto.nutrilog.domain.usecase.SaveCustomFoodUseCase
 import com.projeto.nutrilog.domain.usecase.SearchFoodsUseCase
 import com.projeto.nutrilog.utils.getTodayDateString
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class FoodViewModel(
     private val searchFoodsUseCase: SearchFoodsUseCase,
     private val saveCustomFoodUseCase: SaveCustomFoodUseCase,
-    private val addConsumptionUseCase: AddConsumptionUseCase
+    private val addMealLogUseCase: AddMealLogUseCase
 ) : ViewModel() {
 
     private val _foods = MutableStateFlow<List<FoodEntity>>(emptyList())
@@ -73,7 +73,7 @@ class FoodViewModel(
         }
     }
 
-    fun consumeFood(food: FoodEntity, weightGrams: Int) {
+    fun consumeFood(food: FoodEntity, weightGrams: Int, mealName: String) {
         viewModelScope.launch {
             try {
                 val factor = weightGrams.toDouble() / 100.0
@@ -83,7 +83,16 @@ class FoodViewModel(
                 val fat = food.fatPer100g * factor
                 
                 val date = getTodayDateString()
-                addConsumptionUseCase(date, calories, protein, carbs, fat)
+                addMealLogUseCase(
+                    date = date,
+                    mealName = mealName,
+                    foodName = food.name,
+                    calories = calories,
+                    protein = protein,
+                    carbs = carbs,
+                    fat = fat,
+                    weightGrams = weightGrams
+                )
                 _consumptionSuccess.emit(Unit)
             } catch (e: Exception) {
                 // ponytail: In a real app we'd propagate this error to the UI, keeping it simple for now.

@@ -29,7 +29,7 @@
 
 ## Fase 5
 
-- [ ] Registro de refeições
+- [x] Registro de refeições
 
 ---
 

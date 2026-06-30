@@ -17,23 +17,30 @@ VALUES (?, ?, ?, ?, ?, ?);
 clearUser:
 DELETE FROM UserEntity;
 
-CREATE TABLE DailyProgressEntity (
-    date TEXT NOT NULL PRIMARY KEY,
-    caloriesConsumed INTEGER NOT NULL,
-    proteinConsumed REAL NOT NULL,
-    carbConsumed REAL NOT NULL,
-    fatConsumed REAL NOT NULL
+CREATE TABLE MealLogEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date TEXT NOT NULL,
+    mealName TEXT NOT NULL,
+    foodName TEXT NOT NULL,
+    calories INTEGER NOT NULL,
+    protein REAL NOT NULL,
+    carbs REAL NOT NULL,
+    fat REAL NOT NULL,
+    weightGrams INTEGER NOT NULL
 );
 
-getProgressForDate:
-SELECT * FROM DailyProgressEntity WHERE date = ?;
+insertMealLog:
+INSERT INTO MealLogEntity(date, mealName, foodName, calories, protein, carbs, fat, weightGrams)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
-insertProgress:
-INSERT OR REPLACE INTO DailyProgressEntity(date, caloriesConsumed, proteinConsumed, carbConsumed, fatConsumed)
-VALUES (?, ?, ?, ?, ?);
+getMealLogsForDate:
+SELECT * FROM MealLogEntity WHERE date = ?;
 
-clearProgress:
-DELETE FROM DailyProgressEntity;
+deleteMealLog:
+DELETE FROM MealLogEntity WHERE id = ?;
+
+clearAllMealLogs:
+DELETE FROM MealLogEntity;
 
 CREATE TABLE FoodEntity (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

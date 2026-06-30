@@ -125,8 +125,8 @@ fun FoodDatabaseScreen(
             ConsumeFoodDialog(
                 food = food,
                 onDismiss = { showConsumeDialogForFood = null },
-                onConfirm = { weight ->
-                    viewModel.consumeFood(food, weight)
+                onConfirm = { weight, mealName ->
+                    viewModel.consumeFood(food, weight, mealName)
                     showConsumeDialogForFood = null
                 }
             )
@@ -196,9 +196,11 @@ fun FoodListItem(
 fun ConsumeFoodDialog(
     food: FoodEntity,
     onDismiss: () -> Unit,
-    onConfirm: (weightGrams: Int) -> Unit
+    onConfirm: (weightGrams: Int, mealName: String) -> Unit
 ) {
     var weightText by remember { mutableStateOf("100") }
+    val meals = listOf("Café da Manhã", "Almoço", "Café da Tarde", "Jantar")
+    var selectedMeal by remember { mutableStateOf(meals.first()) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -223,13 +225,50 @@ fun ConsumeFoodDialog(
                     shape = RoundedCornerShape(12.dp),
                     singleLine = true
                 )
+
+                Text(
+                    text = "Refeição",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    meals.forEach { meal ->
+                        val isSelected = selectedMeal == meal
+                        Card(
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable { selectedMeal = meal },
+                            shape = RoundedCornerShape(8.dp),
+                            colors = CardDefaults.cardColors(
+                                containerColor = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = meal.replace("Café da ", ""),
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
+                    }
+                }
             }
         },
         confirmButton = {
             Button(
                 onClick = {
                     val weight = weightText.toIntOrNull() ?: 100
-                    onConfirm(weight)
+                    onConfirm(weight, selectedMeal)
                 },
                 enabled = weightText.isNotBlank()
             ) {
