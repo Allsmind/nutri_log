@@ -52,3 +52,7 @@ All notable changes to this project will be documented in this file.
 - Recipe creation UI (CreateRecipeScreen) displaying dynamic preview of consolidated totals, ingredient list, delete controls, and dialog selectors.
 - Extended Floating Action Button (FAB) on FoodDatabaseScreen for recipe creation.
 - Full Koin dependency wiring for the Recipe creation components.
+- Expect/actual date offset utility (`getOffsetDateString`) in DateUtils for KMP date calculations.
+- Date navigation state inside `DashboardViewModel` allowing day-by-day increments and decrements.
+- Day selector navigation header (IconButton arrows and labels: "Hoje", "Ontem", or "DD/MM/YYYY") in `DashboardScreen`.
+- Date parameter forwarding in navigation to the Food Database (`food_database/{date}` route) to log entries under past historical dates.

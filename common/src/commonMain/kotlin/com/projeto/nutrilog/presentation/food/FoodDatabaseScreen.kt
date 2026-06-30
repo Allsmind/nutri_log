@@ -26,6 +26,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FoodDatabaseScreen(
+    date: String,
     onNavigateBack: () -> Unit,
     onNavigateToCreateRecipe: () -> Unit
 ) {
@@ -140,7 +141,7 @@ fun FoodDatabaseScreen(
                 food = food,
                 onDismiss = { showConsumeDialogForFood = null },
                 onConfirm = { weight, mealName ->
-                    viewModel.consumeFood(food, weight, mealName)
+                    viewModel.consumeFood(food, weight, mealName, date)
                     showConsumeDialogForFood = null
                 }
             )

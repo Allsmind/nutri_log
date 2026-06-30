@@ -28,7 +28,7 @@ sealed class Screen(val route: String) {
     object Welcome : Screen("welcome")
     object Register : Screen("register")
     object Dashboard : Screen("dashboard")
-    object FoodDatabase : Screen("food_database")
+    object FoodDatabase : Screen("food_database/{date}")
     object Statistics : Screen("statistics")
     object CreateRecipe : Screen("create_recipe")
 }
@@ -64,6 +64,7 @@ fun NavGraph(
         composable(Screen.Dashboard.route) {
             val dashboardViewModel: DashboardViewModel = koinViewModel()
             val dashboardState by dashboardViewModel.uiState.collectAsState()
+            val selectedDate by dashboardViewModel.selectedDate.collectAsState()
 
             LaunchedEffect(Unit) {
                 dashboardViewModel.loadDashboardData()
@@ -90,16 +91,23 @@ fun NavGraph(
                     DashboardScreen(
                         user = dashState.user,
                         progress = dashState.progress,
+                        selectedDate = selectedDate,
                         mealLogs = dashState.mealLogs,
                         mealGroups = dashState.mealGroups,
                         onQuickAdd = { calories, protein, carbs, fat ->
                             dashboardViewModel.quickAdd(calories, protein, carbs, fat)
                         },
-                        onNavigateToFoodDatabase = {
-                            navController.navigate(Screen.FoodDatabase.route)
+                        onNavigateToFoodDatabase = { date ->
+                            navController.navigate("food_database/$date")
                         },
                         onNavigateToStatistics = {
                             navController.navigate(Screen.Statistics.route)
+                        },
+                        onPreviousDay = {
+                            dashboardViewModel.previousDay()
+                        },
+                        onNextDay = {
+                            dashboardViewModel.nextDay()
                         },
                         onDeleteMealLog = { id ->
                             dashboardViewModel.deleteLog(id)
@@ -110,8 +118,10 @@ fun NavGraph(
             }
         }
         
-        composable(Screen.FoodDatabase.route) {
+        composable(Screen.FoodDatabase.route) { backStackEntry ->
+            val date = backStackEntry.arguments?.getString("date") ?: ""
             FoodDatabaseScreen(
+                date = date,
                 onNavigateBack = {
                     navController.popBackStack()
                 },

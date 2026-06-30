@@ -9,6 +9,7 @@ import com.projeto.nutrilog.domain.usecase.GetMealLogsUseCase
 import com.projeto.nutrilog.domain.usecase.DeleteMealLogUseCase
 import com.projeto.nutrilog.domain.usecase.AddMealLogUseCase
 import com.projeto.nutrilog.utils.getTodayDateString
+import com.projeto.nutrilog.utils.getOffsetDateString
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -31,6 +32,10 @@ class DashboardViewModel(
     private val _uiState = MutableStateFlow<DashboardUiState>(DashboardUiState.Loading)
     val uiState: StateFlow<DashboardUiState> = _uiState
 
+    // ponytail: Maintain selected date state to enable history tracking in dashboard
+    private val _selectedDate = MutableStateFlow(getTodayDateString())
+    val selectedDate: StateFlow<String> = _selectedDate
+
     init {
         loadDashboardData()
     }
@@ -44,7 +49,7 @@ class DashboardViewModel(
                     return@launch
                 }
                 
-                val date = getTodayDateString()
+                val date = _selectedDate.value
                 val logs = getMealLogsUseCase(date)
 
                 // ponytail: dynamically calculate totals from the logs list
@@ -72,10 +77,20 @@ class DashboardViewModel(
         }
     }
 
+    fun nextDay() {
+        _selectedDate.value = getOffsetDateString(_selectedDate.value, 1)
+        loadDashboardData()
+    }
+
+    fun previousDay() {
+        _selectedDate.value = getOffsetDateString(_selectedDate.value, -1)
+        loadDashboardData()
+    }
+
     fun quickAdd(calories: Int, protein: Double, carbs: Double, fat: Double) {
         viewModelScope.launch {
             try {
-                val date = getTodayDateString()
+                val date = _selectedDate.value
                 addMealLogUseCase(
                     date = date,
                     mealName = "Consumo Rápido",

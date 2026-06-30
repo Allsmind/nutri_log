@@ -6,7 +6,6 @@ import com.projeto.nutrilog.database.FoodEntity
 import com.projeto.nutrilog.domain.usecase.AddMealLogUseCase
 import com.projeto.nutrilog.domain.usecase.SaveCustomFoodUseCase
 import com.projeto.nutrilog.domain.usecase.SearchFoodsUseCase
-import com.projeto.nutrilog.utils.getTodayDateString
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -73,7 +72,7 @@ class FoodViewModel(
         }
     }
 
-    fun consumeFood(food: FoodEntity, weightGrams: Int, mealName: String) {
+    fun consumeFood(food: FoodEntity, weightGrams: Int, mealName: String, date: String) {
         viewModelScope.launch {
             try {
                 val factor = weightGrams.toDouble() / 100.0
@@ -82,7 +81,7 @@ class FoodViewModel(
                 val carbs = food.carbPer100g * factor
                 val fat = food.fatPer100g * factor
                 
-                val date = getTodayDateString()
+                // ponytail: log food under the selected historical date passed from dashboard
                 addMealLogUseCase(
                     date = date,
                     mealName = mealName,

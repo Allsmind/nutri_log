@@ -2,11 +2,11 @@
 
 Feature
 
-Receitas (Fase 6).
+Histórico (Fase 7).
 
 Objetivo
 
-Implementar a criação de receitas compostas (combinação de múltiplos alimentos) calculando os valores nutricionais por 100g e salvando diretamente na tabela FoodEntity.
+Implementar a navegação histórica de dias no Dashboard (anterior/próximo) e registrar consumos sob as datas selecionadas.
 
 Status
 
@@ -14,7 +14,7 @@ Concluído.
 
 Próximo passo
 
-Implementar o Histórico (Fase 7).
+Implementar as Configurações (Fase 9).
 
 Não implementar ainda
 

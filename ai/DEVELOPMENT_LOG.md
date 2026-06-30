@@ -350,3 +350,41 @@ Nenhum.
 Próximo passo
 
 Implementar o Histórico (Fase 7).
+
+## Sessão 009
+
+Data
+
+2026-06-30
+
+Feature
+
+Histórico (Fase 7).
+
+Implementado
+
+- Otimização YAGNI (ponytail): Em vez de criar uma tela separada e complexa para histórico, integramos a navegação de datas diretamente no Dashboard principal. Isso permite que o usuário navegue dia a dia e visualize/modifique os consumos de qualquer data reusando toda a pipeline.
+- Criada a função expect/actual getOffsetDateString no DateUtils para fazer somas e subtrações de dias de forma nativa e offline (zero dependências extras).
+- Atualizado o DashboardViewModel para expor o selectedDate, nextDay() e previousDay(), carregando as refeições e estatísticas de forma dinâmica para a data selecionada.
+- Adicionado cabeçalho de navegação por datas no DashboardScreen, exibindo "Hoje", "Ontem" ou a data formatada ("DD/MM/AAAA").
+- Atualizada a tela FoodDatabaseScreen e o FoodViewModel para receberem a data da navegação como argumento, garantindo que alimentos consumidos historicamente sejam salvos sob o dia que estava ativo no Dashboard.
+- Configurada a rota parametrizada food_database/{date} no NavGraph.kt.
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/utils/DateUtils.kt
+- common/src/androidMain/kotlin/com/projeto/nutrilog/utils/DateUtils.android.kt
+- common/src/iosMain/kotlin/com/projeto/nutrilog/utils/DateUtils.ios.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodDatabaseScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/navigation/NavGraph.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar as Configurações (Fase 9).

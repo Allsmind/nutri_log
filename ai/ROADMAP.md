@@ -41,7 +41,7 @@
 
 ## Fase 7
 
-- [ ] Histórico
+- [x] Histórico
 
 ---
 

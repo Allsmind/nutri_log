@@ -27,11 +27,14 @@ import com.projeto.nutrilog.database.UserEntity
 fun DashboardScreen(
     user: UserEntity,
     progress: DailyProgress,
+    selectedDate: String,
     mealLogs: Map<String, List<MealLogEntity>>,
     mealGroups: List<String>,
     onQuickAdd: (calories: Int, protein: Double, carbs: Double, fat: Double) -> Unit,
-    onNavigateToFoodDatabase: () -> Unit,
+    onNavigateToFoodDatabase: (date: String) -> Unit,
     onNavigateToStatistics: () -> Unit,
+    onPreviousDay: () -> Unit,
+    onNextDay: () -> Unit,
     onDeleteMealLog: (id: Long) -> Unit,
     onResetData: () -> Unit
 ) {
@@ -76,13 +79,44 @@ fun DashboardScreen(
                 textAlign = TextAlign.Center
             )
 
+            // Date Navigation Header
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = onPreviousDay) {
+                    Text("<", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                }
+
+                val dateLabel = when (selectedDate) {
+                    com.projeto.nutrilog.utils.getTodayDateString() -> "Hoje"
+                    com.projeto.nutrilog.utils.getOffsetDateString(com.projeto.nutrilog.utils.getTodayDateString(), -1) -> "Ontem"
+                    else -> {
+                        val parts = selectedDate.split("-")
+                        if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else selectedDate
+                    }
+                }
+
+                Text(
+                    text = dateLabel,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+
+                IconButton(onClick = onNextDay) {
+                    Text(">", fontSize = 24.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                }
+            }
+
             // Row with Action Buttons
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Button(
-                    onClick = onNavigateToFoodDatabase,
+                    onClick = { onNavigateToFoodDatabase(selectedDate) },
                     modifier = Modifier
                         .weight(1f)
                         .height(50.dp),
@@ -146,7 +180,7 @@ fun DashboardScreen(
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
-                                text = "$caloriesConsumed",
+                                text = "${progress.caloriesConsumed}",
                                 fontSize = 32.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary
@@ -234,7 +268,7 @@ fun DashboardScreen(
 
             // Grouped Meal Logs
             Text(
-                text = "Refeições de Hoje",
+                text = "Refeições do Dia",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,
