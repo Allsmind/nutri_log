@@ -63,3 +63,4 @@ All notable changes to this project will be documented in this file.
 - Code Cleanup: Fixed all compiler deprecation warnings across screens (e.g. ArrowBack).
 - Verified complete Gradle compilation and packaging for Android (assembleDebug task success).
 - Bugfix: Added missing FoodRepository, SearchFoodsUseCase, SaveCustomFoodUseCase, and FoodViewModel registrations in Koin.kt to resolve runtime navigate-to-food-database crashes.
+- Recipe UI update: Appended total recipe weight to the name and disabled manual weight input in ConsumeFoodDialog to log recipes directly with their original fixed weight.

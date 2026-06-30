@@ -484,3 +484,34 @@ Problemas
 Próximo passo
 
 Nenhum. Projeto 100% concluído!
+
+## Sessão 013
+
+Data
+
+2026-06-30
+
+Feature
+
+Ajuste de Fluxo (Receitas com Peso Fixo).
+
+Implementado
+
+- Otimização YAGNI (ponytail): Para impedir que receitas sofram alteração manual de peso ao serem consumidas, o nome da receita passa a ser salvo com um sufixo que indica seu peso total original (ex: `Shake Proteico (Receita - 350g)`).
+- Atualizado o dialog `ConsumeFoodDialog` no `FoodDatabaseScreen.kt`:
+  - Criada função auxiliar `parseRecipeWeight` para extrair o peso original da string do nome.
+  - Se for detectado que o item é uma receita, o campo de texto para entrada manual de peso é ocultado e substituído por um informativo fixo contendo a quantidade original.
+  - O consumo é inserido no histórico usando o peso total exato da receita original.
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/recipe/CreateRecipeViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodDatabaseScreen.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Nenhum. Projeto 100% concluído!

@@ -213,7 +213,9 @@ fun ConsumeFoodDialog(
     onDismiss: () -> Unit,
     onConfirm: (weightGrams: Int, mealName: String) -> Unit
 ) {
-    var weightText by remember { mutableStateOf("100") }
+    // ponytail: Appending the total recipe weight to the name string allows skipping the weight input dialog and logging the exact original weight without database schema changes.
+    val parsedWeight = remember(food.name) { parseRecipeWeight(food.name) }
+    var weightText by remember { mutableStateOf(parsedWeight?.toString() ?: "100") }
     val meals = listOf("Café da Manhã", "Almoço", "Café da Tarde", "Jantar")
     var selectedMeal by remember { mutableStateOf(meals.first()) }
 
@@ -232,14 +234,23 @@ fun ConsumeFoodDialog(
                     fontWeight = FontWeight.SemiBold
                 )
 
-                OutlinedTextField(
-                    value = weightText,
-                    onValueChange = { weightText = it },
-                    label = { Text("Quantidade (gramas)") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    shape = RoundedCornerShape(12.dp),
-                    singleLine = true
-                )
+                if (parsedWeight == null) {
+                    OutlinedTextField(
+                        value = weightText,
+                        onValueChange = { weightText = it },
+                        label = { Text("Quantidade (gramas)") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        shape = RoundedCornerShape(12.dp),
+                        singleLine = true
+                    )
+                } else {
+                    Text(
+                        text = "Quantidade da receita: ${parsedWeight}g",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                    )
+                }
 
                 Text(
                     text = "Refeição",
@@ -384,4 +395,12 @@ fun CreateFoodDialog(
             }
         }
     )
+}
+
+private fun parseRecipeWeight(name: String): Int? {
+    if (!name.contains(" (Receita - ") || !name.endsWith("g)")) return null
+    val startIndex = name.lastIndexOf(" (Receita - ") + " (Receita - ".length
+    val endIndex = name.length - 2
+    if (startIndex >= endIndex) return null
+    return name.substring(startIndex, endIndex).toIntOrNull()
 }

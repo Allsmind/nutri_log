@@ -91,7 +91,7 @@ class CreateRecipeViewModel(
                 // ponytail: save recipe directly as a standard custom FoodEntity
                 val foodRecipe = FoodEntity(
                     id = 0L,
-                    name = "$name (Receita)",
+                    name = "$name (Receita - ${totalWeight.toInt()}g)",
                     caloriesPer100g = caloriesPer100g,
                     proteinPer100g = proteinPer100g,
                     carbPer100g = carbPer100g,
