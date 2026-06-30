@@ -56,3 +56,7 @@ All notable changes to this project will be documented in this file.
 - Date navigation state inside `DashboardViewModel` allowing day-by-day increments and decrements.
 - Day selector navigation header (IconButton arrows and labels: "Hoje", "Ontem", or "DD/MM/YYYY") in `DashboardScreen`.
 - Date parameter forwarding in navigation to the Food Database (`food_database/{date}` route) to log entries under past historical dates.
+- Reused SaveUserUseCase in Clean Architecture settings layer (SettingsViewModel).
+- Settings UI (SettingsScreen) with pre-filled inputs for user name and targets (calories, protein, carbs, fat).
+- Symmetrical controls row in DashboardScreen with direct navigation to "Ajustes" (Settings) and "Reset Perfil".
+- Full Koin dependency wiring for the Settings components.

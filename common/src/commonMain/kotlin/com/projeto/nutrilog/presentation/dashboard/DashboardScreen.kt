@@ -33,6 +33,7 @@ fun DashboardScreen(
     onQuickAdd: (calories: Int, protein: Double, carbs: Double, fat: Double) -> Unit,
     onNavigateToFoodDatabase: (date: String) -> Unit,
     onNavigateToStatistics: () -> Unit,
+    onNavigateToSettings: () -> Unit,
     onPreviousDay: () -> Unit,
     onNextDay: () -> Unit,
     onDeleteMealLog: (id: Long) -> Unit,
@@ -430,22 +431,39 @@ fun DashboardScreen(
                 }
             }
 
-            // Reset profile option
-            Button(
-                onClick = onResetData,
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .height(48.dp),
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.3f),
-                    contentColor = MaterialTheme.colorScheme.error
-                )
+            // Bottom controls: Configurações & Reset
+            Row(
+                modifier = Modifier.fillMaxWidth(0.8f),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Limpar Perfil (Reset)",
-                    fontWeight = FontWeight.Bold
-                )
+                Button(
+                    onClick = onNavigateToSettings,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(48.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                ) {
+                    Text(text = "Ajustes", fontWeight = FontWeight.Bold)
+                }
+
+                Button(
+                    onClick = onResetData,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(48.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.3f),
+                        contentColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text(text = "Reset Perfil", fontWeight = FontWeight.Bold)
+                }
             }
 
             Spacer(modifier = Modifier.height(32.dp))

@@ -53,7 +53,7 @@
 
 ## Fase 9
 
-- [ ] Configurações
+- [x] Configurações
 
 ---
 

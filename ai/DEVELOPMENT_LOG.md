@@ -388,3 +388,37 @@ Nenhum.
 Próximo passo
 
 Implementar as Configurações (Fase 9).
+
+## Sessão 010
+
+Data
+
+2026-06-30
+
+Feature
+
+Configurações (Fase 9).
+
+Implementado
+
+- Otimização YAGNI (ponytail): Reusado o SaveUserUseCase já existente para realizar atualizações de perfil e metas, evitando duplicações desnecessárias de código/queries de persistência.
+- Criado o SettingsViewModel que carrega o estado do usuário ativo e fornece o método saveSettings para salvar as atualizações encapsuladas em um UserEntity.
+- Criada a tela SettingsScreen contendo formulários auto-preenchidos para alteração de Nome, Meta Calórica, Proteínas, Carboidratos e Gorduras.
+- Atualizado o DashboardScreen para incluir o botão "Ajustes" lado a lado com "Reset Perfil" no rodapé de controles da dashboard.
+- Configurada a rota settings no NavGraph.kt e injeções no Koin.kt.
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/settings/SettingsViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/settings/SettingsScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/navigation/NavGraph.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar as Refatorações (Fase 10).

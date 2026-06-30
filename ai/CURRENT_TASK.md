@@ -2,11 +2,11 @@
 
 Feature
 
-Histórico (Fase 7).
+Configurações (Fase 9).
 
 Objetivo
 
-Implementar a navegação histórica de dias no Dashboard (anterior/próximo) e registrar consumos sob as datas selecionadas.
+Implementar a tela de Configurações para edição do perfil do usuário e de suas metas diárias, salvando e atualizando na tabela UserEntity.
 
 Status
 
@@ -14,7 +14,7 @@ Concluído.
 
 Próximo passo
 
-Implementar as Configurações (Fase 9).
+Implementar as Refatorações (Fase 10).
 
 Não implementar ainda
 

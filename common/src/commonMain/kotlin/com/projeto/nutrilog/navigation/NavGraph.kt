@@ -22,6 +22,7 @@ import com.projeto.nutrilog.presentation.dashboard.DashboardUiState
 import com.projeto.nutrilog.presentation.food.FoodDatabaseScreen
 import com.projeto.nutrilog.presentation.statistics.ScreenStatistics
 import com.projeto.nutrilog.presentation.recipe.CreateRecipeScreen
+import com.projeto.nutrilog.presentation.settings.SettingsScreen
 import org.koin.compose.viewmodel.koinViewModel
 
 sealed class Screen(val route: String) {
@@ -31,6 +32,7 @@ sealed class Screen(val route: String) {
     object FoodDatabase : Screen("food_database/{date}")
     object Statistics : Screen("statistics")
     object CreateRecipe : Screen("create_recipe")
+    object Settings : Screen("settings")
 }
 
 @Composable
@@ -103,6 +105,9 @@ fun NavGraph(
                         onNavigateToStatistics = {
                             navController.navigate(Screen.Statistics.route)
                         },
+                        onNavigateToSettings = {
+                            navController.navigate(Screen.Settings.route)
+                        },
                         onPreviousDay = {
                             dashboardViewModel.previousDay()
                         },
@@ -141,6 +146,14 @@ fun NavGraph(
 
         composable(Screen.CreateRecipe.route) {
             CreateRecipeScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Screen.Settings.route) {
+            SettingsScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }
