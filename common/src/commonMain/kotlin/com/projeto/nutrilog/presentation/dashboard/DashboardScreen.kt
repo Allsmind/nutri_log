@@ -122,6 +122,7 @@ fun DashboardScreen(
                         .weight(1f)
                         .height(50.dp),
                     shape = RoundedCornerShape(16.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.secondary,
                         contentColor = MaterialTheme.colorScheme.onSecondary
@@ -130,7 +131,9 @@ fun DashboardScreen(
                     Text(
                         text = "Buscar Alimentos",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp
+                        fontSize = 12.sp,
+                        maxLines = 1,
+                        textAlign = TextAlign.Center
                     )
                 }
 
@@ -140,6 +143,7 @@ fun DashboardScreen(
                         .weight(1f)
                         .height(50.dp),
                     shape = RoundedCornerShape(16.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.tertiary,
                         contentColor = MaterialTheme.colorScheme.onTertiary
@@ -148,7 +152,9 @@ fun DashboardScreen(
                     Text(
                         text = "Ver Estatísticas",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp
+                        fontSize = 12.sp,
+                        maxLines = 1,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -443,12 +449,19 @@ fun DashboardScreen(
                         .weight(1f)
                         .height(48.dp),
                     shape = RoundedCornerShape(12.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primaryContainer,
                         contentColor = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 ) {
-                    Text(text = "Ajustes", fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "Ajustes",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp,
+                        maxLines = 1,
+                        textAlign = TextAlign.Center
+                    )
                 }
 
                 Button(
@@ -457,12 +470,19 @@ fun DashboardScreen(
                         .weight(1f)
                         .height(48.dp),
                     shape = RoundedCornerShape(12.dp),
+                    contentPadding = PaddingValues(horizontal = 8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.3f),
                         contentColor = MaterialTheme.colorScheme.error
                     )
                 ) {
-                    Text(text = "Reset Perfil", fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "Reset Perfil",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 12.sp,
+                        maxLines = 1,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
 

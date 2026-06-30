@@ -515,3 +515,32 @@ Nenhum.
 Próximo passo
 
 Nenhum. Projeto 100% concluído!
+
+## Sessão 014
+
+Data
+
+2026-06-30
+
+Feature
+
+Layout Responsivo (Botões do Dashboard).
+
+Implementado
+
+- Ajustado o layout dos botões principais de ação no `DashboardScreen.kt` ("Buscar Alimentos", "Ver Estatísticas", "Ajustes", "Reset Perfil") para impedir que os textos sejam cortados em telas menores (como Samsung S20FE).
+- Configurado o preenchimento de conteúdo interno (`contentPadding`) para `PaddingValues(horizontal = 8.dp)` nos botões.
+- Ajustado o tamanho da fonte para `12.sp`, definindo `maxLines = 1` e alinhamento centrado.
+- Removido o bloco duplicado que havia sido inserido temporariamente durante o ajuste do rodapé.
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Nenhum. Projeto 100% concluído!

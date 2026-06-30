@@ -64,3 +64,4 @@ All notable changes to this project will be documented in this file.
 - Verified complete Gradle compilation and packaging for Android (assembleDebug task success).
 - Bugfix: Added missing FoodRepository, SearchFoodsUseCase, SaveCustomFoodUseCase, and FoodViewModel registrations in Koin.kt to resolve runtime navigate-to-food-database crashes.
 - Recipe UI update: Appended total recipe weight to the name and disabled manual weight input in ConsumeFoodDialog to log recipes directly with their original fixed weight.
+- Responsive layout: Adjusted contentPadding, text sizes, and alignments on Dashboard action buttons to prevent text cutting on smaller devices (e.g. S20FE).
