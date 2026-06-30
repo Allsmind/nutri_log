@@ -60,3 +60,5 @@ All notable changes to this project will be documented in this file.
 - Settings UI (SettingsScreen) with pre-filled inputs for user name and targets (calories, protein, carbs, fat).
 - Symmetrical controls row in DashboardScreen with direct navigation to "Ajustes" (Settings) and "Reset Perfil".
 - Full Koin dependency wiring for the Settings components.
+- Code Cleanup: Fixed all compiler deprecation warnings across screens (e.g. ArrowBack).
+- Verified complete Gradle compilation and packaging for Android (assembleDebug task success).

@@ -422,3 +422,33 @@ Nenhum.
 Próximo passo
 
 Implementar as Refatorações (Fase 10).
+
+## Sessão 011
+
+Data
+
+2026-06-30
+
+Feature
+
+Refatorações (Fase 10).
+
+Implementado
+
+- Limpeza de avisos de depreciação (Warnings) de compilação em todo o projeto.
+- Substituída a importação e o uso de `Icons.Default.ArrowBack` (depreciada em Compose Multiplatform) por `Icons.AutoMirrored.Filled.ArrowBack` nas telas `RegisterScreen.kt` e `FoodDatabaseScreen.kt`.
+- Validação completa da compilação e empacotamento em nível de metadata e plataforma Android (`assembleDebug`).
+- Conclusão de todos os marcos planejados e fechamento das metas do roadmap do projeto NutriLog!
+
+Arquivos alterados
+
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/register/RegisterScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodDatabaseScreen.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Nenhum. Projeto 100% concluído!

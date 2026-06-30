@@ -2,11 +2,11 @@
 
 Feature
 
-Configurações (Fase 9).
+Refatorações (Fase 10).
 
 Objetivo
 
-Implementar a tela de Configurações para edição do perfil do usuário e de suas metas diárias, salvando e atualizando na tabela UserEntity.
+Realizar o polimento do código, remoção de arquivos e trechos obsoletos e limpeza de avisos de depreciação do Kotlin Compiler.
 
 Status
 
@@ -14,7 +14,7 @@ Concluído.
 
 Próximo passo
 
-Implementar as Refatorações (Fase 10).
+Todos os marcos do Roadmap foram totalmente concluídos!
 
 Não implementar ainda
 

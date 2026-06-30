@@ -59,4 +59,4 @@
 
 ## Fase 10
 
-- [ ] Refatorações
+- [x] Refatorações
