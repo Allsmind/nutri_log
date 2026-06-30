@@ -23,7 +23,7 @@
 
 ## Fase 4
 
-- [ ] Banco de alimentos
+- [x] Banco de alimentos
 
 ---
 

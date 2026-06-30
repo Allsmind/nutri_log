@@ -26,6 +26,7 @@ fun DashboardScreen(
     user: UserEntity,
     progress: DailyProgressEntity,
     onQuickAdd: (calories: Int, protein: Double, carbs: Double, fat: Double) -> Unit,
+    onNavigateToFoodDatabase: () -> Unit,
     onResetData: () -> Unit
 ) {
     var quickCalories by remember { mutableStateOf("") }
@@ -68,6 +69,25 @@ fun DashboardScreen(
                 color = MaterialTheme.colorScheme.primary,
                 textAlign = TextAlign.Center
             )
+
+            // Search Food Database Button
+            Button(
+                onClick = onNavigateToFoodDatabase,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.onSecondary
+                )
+            ) {
+                Text(
+                    text = "Buscar no Banco de Alimentos",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
+            }
 
             // Calories Progress Card
             Card(

@@ -28,3 +28,9 @@ All notable changes to this project will be documented in this file.
 - Dashboard UI (`DashboardScreen`) displaying calories budget, consumed and remaining amounts, progress bars for protein/carbs/fat, and reset profiles.
 - Inline Quick Add form on the dashboard to dynamically add calories, protein, carbs, and fat consumption to today's entry.
 - Full Koin dependency wiring for the progress repository, use cases and DashboardViewModel.
+- Food database schema (`FoodEntity`) in SQLDelight pre-seeded with common default foods (rice, chicken, egg, oats, olive oil, etc.).
+- Clean Architecture food database layer (`FoodRepository`, `FoodRepositoryImpl`, `SearchFoodsUseCase`, `SaveCustomFoodUseCase`).
+- Food search and listing UI (`FoodDatabaseScreen`) with popups to log consumption of a selected item by custom weight and save custom foods.
+- Updated Dashboard UI with a direct link button to browse the Food Database.
+- Full Koin dependency wiring for the Food Database components.
+- Cleanup: Deleted obsolete profile placeholder file `ProfileDashboardPlaceholderScreen.kt`.

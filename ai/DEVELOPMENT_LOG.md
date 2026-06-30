@@ -171,3 +171,51 @@ Nenhum.
 Próximo passo
 
 Implementar o Banco de alimentos (Fase 4).
+
+## Sessão 005
+
+Data
+
+2026-06-29
+
+Feature
+
+Banco de alimentos (Fase 4).
+
+Implementado
+
+- Criação da tabela FoodEntity no SQLDelight com dados padrão pré-cadastrados (Arroz, Frango, Ovo, Aveia, Azeite, etc.)
+- Criadas as queries searchFoods e insertFood
+- Criação das interfaces de repositório FoodRepository e FoodRepositoryImpl
+- Criados os Casos de Uso SearchFoodsUseCase e SaveCustomFoodUseCase
+- Atualizado o ClearUserUseCase para resetar as tabelas sem excluir os alimentos padrão globais
+- Criado o FoodViewModel para buscar alimentos, salvar alimentos customizados e calcular consumo por gramas consumido
+- Criada a tela FoodDatabaseScreen com listagem de alimentos, diálogo para definir peso consumido e formulário para novos alimentos
+- Configurada injeção de dependência dos novos componentes no Koin
+- Adicionado botão "Buscar no Banco de Alimentos" no DashboardScreen
+- Configurada rota do Banco de Alimentos no NavGraph e App.kt
+- Remoção do arquivo obsoleto ProfileDashboardPlaceholderScreen.kt
+
+Arquivos alterados
+
+- common/src/commonMain/sqldelight/com/projeto/nutrilog/database/NutriLogDatabase.sq
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/repository/FoodRepository.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/data/repository/FoodRepositoryImpl.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/SearchFoodsUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/SaveCustomFoodUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/domain/usecase/ClearUserUseCase.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/di/Koin.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/dashboard/DashboardScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodViewModel.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/food/FoodDatabaseScreen.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/navigation/NavGraph.kt
+- common/src/commonMain/kotlin/com/projeto/nutrilog/App.kt
+- Deletado: common/src/commonMain/kotlin/com/projeto/nutrilog/presentation/main/ProfileDashboardPlaceholderScreen.kt
+
+Problemas
+
+Nenhum.
+
+Próximo passo
+
+Implementar o Registro de refeições (Fase 5).

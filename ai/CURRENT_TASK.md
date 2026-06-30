@@ -2,11 +2,11 @@
 
 Feature
 
-Dashboard (Fase 3).
+Banco de alimentos (Fase 4).
 
 Objetivo
 
-Criar a tela de Dashboard com acompanhamento dinâmico de calorias e macros consumidos vs meta do usuário, incluindo a funcionalidade de Quick Add.
+Criar a funcionalidade de banco de alimentos, permitindo busca de alimentos pré-cadastrados, criação de alimentos personalizados e registro de consumo a partir do peso consumido.
 
 Status
 
@@ -14,12 +14,10 @@ Concluído.
 
 Próximo passo
 
-Implementar o Banco de alimentos (Fase 4).
+Implementar o Registro de refeições (Fase 5).
 
 Não implementar ainda
 
-- Foods
-- Meals
 - Statistics
 - Receitas
 

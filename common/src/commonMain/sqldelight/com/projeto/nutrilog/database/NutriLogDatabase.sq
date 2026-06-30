@@ -34,3 +34,29 @@ VALUES (?, ?, ?, ?, ?);
 
 clearProgress:
 DELETE FROM DailyProgressEntity;
+
+CREATE TABLE FoodEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    caloriesPer100g INTEGER NOT NULL,
+    proteinPer100g REAL NOT NULL,
+    carbPer100g REAL NOT NULL,
+    fatPer100g REAL NOT NULL
+);
+
+-- Seed default foods
+INSERT OR IGNORE INTO FoodEntity(id, name, caloriesPer100g, proteinPer100g, carbPer100g, fatPer100g) VALUES
+(1, 'Arroz Branco Cozido', 130, 2.7, 28.0, 0.2),
+(2, 'Peito de Frango Grelhado', 165, 31.0, 0.0, 3.6),
+(3, 'Ovo Inteiro Cozido', 155, 13.0, 1.1, 11.0),
+(4, 'Banana Nanica', 89, 1.1, 23.0, 0.3),
+(5, 'Feijão Carioca Cozido', 76, 4.8, 14.0, 0.5),
+(6, 'Aveia em Flocos', 389, 16.9, 66.0, 6.9),
+(7, 'Azeite de Oliva Extra Virgem', 884, 0.0, 0.0, 100.0);
+
+searchFoods:
+SELECT * FROM FoodEntity WHERE name LIKE ? ORDER BY name ASC;
+
+insertFood:
+INSERT OR REPLACE INTO FoodEntity(name, caloriesPer100g, proteinPer100g, carbPer100g, fatPer100g)
+VALUES (?, ?, ?, ?, ?);
