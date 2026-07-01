@@ -37,6 +37,7 @@ fun RegisterScreen(
     var protein by remember { mutableStateOf("") }
     var carbs by remember { mutableStateOf("") }
     var fat by remember { mutableStateOf("") }
+    var acceptedTerms by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -159,6 +160,53 @@ fun RegisterScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Disclaimer Card (LGPD & Saúde)
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text(
+                            text = "Aviso de Privacidade & Saúde",
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = "1. Seus dados cadastrais e registros alimentares ficam salvos exclusivamente de forma local no banco de dados do seu celular (offline-first), em total conformidade com a LGPD.\n\n" +
+                                   "2. O NutriLog é uma ferramenta de suporte para registro e fins informativos. Não fornece conselhos médicos, diagnósticos ou planos dietéticos. Consulte sempre um profissional de saúde (médico ou nutricionista) antes de realizar mudanças em sua alimentação.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
+                        )
+                    }
+                }
+
+                // Checkbox to Accept Terms
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = acceptedTerms,
+                        onCheckedChange = { acceptedTerms = it }
+                    )
+                    Text(
+                        text = "Compreendo e aceito os termos do app",
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
                 // Submit Button
                 Button(
                     onClick = {
@@ -176,7 +224,7 @@ fun RegisterScreen(
                         containerColor = MaterialTheme.colorScheme.primary,
                         contentColor = MaterialTheme.colorScheme.onPrimary
                     ),
-                    enabled = name.isNotBlank() && calories.isNotBlank() && protein.isNotBlank() && carbs.isNotBlank() && fat.isNotBlank()
+                    enabled = name.isNotBlank() && calories.isNotBlank() && protein.isNotBlank() && carbs.isNotBlank() && fat.isNotBlank() && acceptedTerms
                 ) {
                     Text(
                         text = "Salvar Perfil",
