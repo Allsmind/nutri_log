@@ -65,8 +65,11 @@ searchFoods:
 SELECT * FROM FoodEntity WHERE name LIKE ? ORDER BY name ASC;
 
 insertFood:
-INSERT OR REPLACE INTO FoodEntity(name, caloriesPer100g, proteinPer100g, carbPer100g, fatPer100g)
-VALUES (?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO FoodEntity(id, name, caloriesPer100g, proteinPer100g, carbPer100g, fatPer100g)
+VALUES (?, ?, ?, ?, ?, ?);
+
+deleteFood:
+DELETE FROM FoodEntity WHERE id = ?;
 
 getDailySummaries:
 SELECT 

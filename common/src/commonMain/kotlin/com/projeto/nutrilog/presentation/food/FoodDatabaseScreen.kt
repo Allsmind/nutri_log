@@ -9,6 +9,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -36,6 +38,7 @@ fun FoodDatabaseScreen(
 
     var showConsumeDialogForFood by remember { mutableStateOf<FoodEntity?>(null) }
     var showCreateFoodDialog by remember { mutableStateOf(false) }
+    var editingFood by remember { mutableStateOf<FoodEntity?>(null) }
 
     LaunchedEffect(viewModel) {
         viewModel.consumptionSuccess.collect {
@@ -104,7 +107,9 @@ fun FoodDatabaseScreen(
                 items(foods, key = { it.id }) { food ->
                     FoodListItem(
                         food = food,
-                        onClick = { showConsumeDialogForFood = food }
+                        onClick = { showConsumeDialogForFood = food },
+                        onEditClick = { editingFood = food },
+                        onDeleteClick = { viewModel.deleteFood(food.id) }
                     )
                 }
             }
@@ -152,8 +157,20 @@ fun FoodDatabaseScreen(
             CreateFoodDialog(
                 onDismiss = { showCreateFoodDialog = false },
                 onConfirm = { name, calories, protein, carbs, fat ->
-                    viewModel.saveCustomFood(name, calories, protein, carbs, fat)
+                    viewModel.saveCustomFood(name = name, calories = calories, protein = protein, carbs = carbs, fat = fat)
                     showCreateFoodDialog = false
+                }
+            )
+        }
+
+        // Edit Custom Food Dialog
+        editingFood?.let { food ->
+            CreateFoodDialog(
+                food = food,
+                onDismiss = { editingFood = null },
+                onConfirm = { name, calories, protein, carbs, fat ->
+                    viewModel.saveCustomFood(id = food.id, name = name, calories = calories, protein = protein, carbs = carbs, fat = fat)
+                    editingFood = null
                 }
             )
         }
@@ -163,7 +180,9 @@ fun FoodDatabaseScreen(
 @Composable
 fun FoodListItem(
     food: FoodEntity,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onEditClick: () -> Unit,
+    onDeleteClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -174,34 +193,63 @@ fun FoodListItem(
             containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.8f)
         )
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = food.name,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "${food.caloriesPer100g} kcal / 100g",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary
+                    text = food.name,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
 
-                Text(
-                    text = "P: ${food.proteinPer100g.toInt()}g  C: ${food.carbPer100g.toInt()}g  G: ${food.fatPer100g.toInt()}g",
-                    fontSize = 12.sp,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "${food.caloriesPer100g} kcal / 100g",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+
+                    Text(
+                        text = "P: ${food.proteinPer100g.toInt()}g  C: ${food.carbPer100g.toInt()}g  G: ${food.fatPer100g.toInt()}g",
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                    )
+                }
+            }
+
+            // ponytail: Default seeded foods (id <= 7) cannot be edited or deleted
+            if (food.id > 7L) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = onEditClick) {
+                        Icon(
+                            imageVector = Icons.Default.Edit,
+                            contentDescription = "Editar",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    IconButton(onClick = onDeleteClick) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Excluir",
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
             }
         }
     }
@@ -311,20 +359,21 @@ fun ConsumeFoodDialog(
 
 @Composable
 fun CreateFoodDialog(
+    food: FoodEntity? = null,
     onDismiss: () -> Unit,
     onConfirm: (name: String, calories: Int, protein: Double, carbs: Double, fat: Double) -> Unit
 ) {
-    var name by remember { mutableStateOf("") }
-    var calories by remember { mutableStateOf("") }
-    var protein by remember { mutableStateOf("") }
-    var carbs by remember { mutableStateOf("") }
-    var fat by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf(food?.name ?: "") }
+    var calories by remember { mutableStateOf(food?.caloriesPer100g?.toString() ?: "") }
+    var protein by remember { mutableStateOf(food?.proteinPer100g?.toString() ?: "") }
+    var carbs by remember { mutableStateOf(food?.carbPer100g?.toString() ?: "") }
+    var fat by remember { mutableStateOf(food?.fatPer100g?.toString() ?: "") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Novo Alimento (por 100g)",
+                text = if (food == null) "Novo Alimento (por 100g)" else "Editar Alimento (por 100g)",
                 fontWeight = FontWeight.Bold
             )
         },

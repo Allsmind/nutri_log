@@ -21,11 +21,16 @@ class FoodRepositoryImpl(
     override suspend fun saveFood(food: FoodEntity): Unit = withContext(Dispatchers.IO) {
         // ponytail: database write executes on Dispatchers.IO
         queries.insertFood(
+            id = if (food.id == 0L) null else food.id,
             name = food.name,
             caloriesPer100g = food.caloriesPer100g,
             proteinPer100g = food.proteinPer100g,
             carbPer100g = food.carbPer100g,
             fatPer100g = food.fatPer100g
         )
+    }
+
+    override suspend fun deleteFood(id: Long): Unit = withContext(Dispatchers.IO) {
+        queries.deleteFood(id)
     }
 }

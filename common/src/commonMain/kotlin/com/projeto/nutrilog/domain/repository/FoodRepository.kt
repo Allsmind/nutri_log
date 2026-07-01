@@ -6,4 +6,5 @@ import com.projeto.nutrilog.database.FoodEntity
 interface FoodRepository {
     suspend fun searchFoods(query: String): List<FoodEntity>
     suspend fun saveFood(food: FoodEntity)
+    suspend fun deleteFood(id: Long)
 }

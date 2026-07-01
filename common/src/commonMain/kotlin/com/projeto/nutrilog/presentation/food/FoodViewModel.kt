@@ -6,6 +6,7 @@ import com.projeto.nutrilog.database.FoodEntity
 import com.projeto.nutrilog.domain.usecase.AddMealLogUseCase
 import com.projeto.nutrilog.domain.usecase.SaveCustomFoodUseCase
 import com.projeto.nutrilog.domain.usecase.SearchFoodsUseCase
+import com.projeto.nutrilog.domain.usecase.DeleteFoodUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 class FoodViewModel(
     private val searchFoodsUseCase: SearchFoodsUseCase,
     private val saveCustomFoodUseCase: SaveCustomFoodUseCase,
-    private val addMealLogUseCase: AddMealLogUseCase
+    private val addMealLogUseCase: AddMealLogUseCase,
+    private val deleteFoodUseCase: DeleteFoodUseCase
 ) : ViewModel() {
 
     private val _foods = MutableStateFlow<List<FoodEntity>>(emptyList())
@@ -48,6 +50,7 @@ class FoodViewModel(
     }
 
     fun saveCustomFood(
+        id: Long = 0L,
         name: String,
         calories: Int,
         protein: Double,
@@ -57,7 +60,7 @@ class FoodViewModel(
         viewModelScope.launch {
             try {
                 val food = FoodEntity(
-                    id = 0L,
+                    id = id,
                     name = name,
                     caloriesPer100g = calories.toLong(),
                     proteinPer100g = protein,
@@ -65,6 +68,17 @@ class FoodViewModel(
                     fatPer100g = fat
                 )
                 saveCustomFoodUseCase(food)
+                performSearch(_searchQuery.value)
+            } catch (e: Exception) {
+                // ponytail: In a real app we'd propagate this error to the UI, keeping it simple for now.
+            }
+        }
+    }
+
+    fun deleteFood(id: Long) {
+        viewModelScope.launch {
+            try {
+                deleteFoodUseCase(id)
                 performSearch(_searchQuery.value)
             } catch (e: Exception) {
                 // ponytail: In a real app we'd propagate this error to the UI, keeping it simple for now.

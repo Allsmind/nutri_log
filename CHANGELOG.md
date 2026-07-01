@@ -66,3 +66,4 @@ All notable changes to this project will be documented in this file.
 - Recipe UI update: Appended total recipe weight to the name and disabled manual weight input in ConsumeFoodDialog to log recipes directly with their original fixed weight.
 - Responsive layout: Adjusted contentPadding, text sizes, and alignments on Dashboard action buttons to prevent text cutting on smaller devices (e.g. S20FE).
 - Consent and health disclaimers: Added LGPD local storage notice and mandatory check box to RegisterScreen, and medical disclaimer notice to SettingsScreen.
+- Custom Foods and Recipes deletion & edition: Added SQL queries, Repository support, DeleteFoodUseCase, and UI controls (edit pencil/delete trash buttons) to update and delete custom food items (id > 7) in the food search screen.

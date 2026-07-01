@@ -21,6 +21,7 @@ import com.projeto.nutrilog.domain.usecase.DeleteMealLogUseCase
 import com.projeto.nutrilog.domain.usecase.GetDailySummariesUseCase
 import com.projeto.nutrilog.domain.usecase.SearchFoodsUseCase
 import com.projeto.nutrilog.domain.usecase.SaveCustomFoodUseCase
+import com.projeto.nutrilog.domain.usecase.DeleteFoodUseCase
 import com.projeto.nutrilog.presentation.register.RegisterViewModel
 import com.projeto.nutrilog.presentation.main.MainViewModel
 import com.projeto.nutrilog.presentation.dashboard.DashboardViewModel
@@ -58,6 +59,7 @@ fun commonModule() = module {
     single { GetDailySummariesUseCase(get()) }
     single { SearchFoodsUseCase(get()) }
     single { SaveCustomFoodUseCase(get()) }
+    single { DeleteFoodUseCase(get()) }
     
     viewModel { RegisterViewModel(get()) }
     viewModel { MainViewModel(get(), get()) }
@@ -65,5 +67,5 @@ fun commonModule() = module {
     viewModel { StatisticsViewModel(get(), get()) }
     viewModel { CreateRecipeViewModel(get(), get()) }
     viewModel { SettingsViewModel(get(), get()) }
-    viewModel { FoodViewModel(get(), get(), get()) }
+    viewModel { FoodViewModel(get(), get(), get(), get()) }
 }
