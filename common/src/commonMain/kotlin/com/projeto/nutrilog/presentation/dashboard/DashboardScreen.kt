@@ -91,8 +91,16 @@ fun DashboardScreen(
                 }
 
                 val dateLabel = when (selectedDate) {
-                    com.projeto.nutrilog.utils.getTodayDateString() -> "Hoje"
-                    com.projeto.nutrilog.utils.getOffsetDateString(com.projeto.nutrilog.utils.getTodayDateString(), -1) -> "Ontem"
+                    com.projeto.nutrilog.utils.getTodayDateString() -> {
+                        val parts = selectedDate.split("-")
+                        val formatted = if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else selectedDate
+                        "Hoje ($formatted)"
+                    }
+                    com.projeto.nutrilog.utils.getOffsetDateString(com.projeto.nutrilog.utils.getTodayDateString(), -1) -> {
+                        val parts = selectedDate.split("-")
+                        val formatted = if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else selectedDate
+                        "Ontem ($formatted)"
+                    }
                     else -> {
                         val parts = selectedDate.split("-")
                         if (parts.size == 3) "${parts[2]}/${parts[1]}/${parts[0]}" else selectedDate

@@ -67,3 +67,4 @@ All notable changes to this project will be documented in this file.
 - Responsive layout: Adjusted contentPadding, text sizes, and alignments on Dashboard action buttons to prevent text cutting on smaller devices (e.g. S20FE).
 - Consent and health disclaimers: Added LGPD local storage notice and mandatory check box to RegisterScreen, and medical disclaimer notice to SettingsScreen.
 - Custom Foods and Recipes deletion & edition: Added SQL queries, Repository support, DeleteFoodUseCase, and UI controls (edit pencil/delete trash buttons) to update and delete custom food items (id > 7) in the food search screen.
+- Date display & automatic rollover: Appended formatted date labels to "Hoje" and "Ontem" on Dashboard, added app resume lifecycle listener in NavGraph, and implemented automatic selectedDate rollover to the new system today when day changes.

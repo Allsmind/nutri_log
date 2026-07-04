@@ -36,6 +36,8 @@ class DashboardViewModel(
     private val _selectedDate = MutableStateFlow(getTodayDateString())
     val selectedDate: StateFlow<String> = _selectedDate
 
+    private var lastSystemToday = getTodayDateString()
+
     init {
         loadDashboardData()
     }
@@ -43,6 +45,15 @@ class DashboardViewModel(
     fun loadDashboardData() {
         viewModelScope.launch {
             try {
+                // ponytail: check if the calendar day has turned since last check
+                val currentToday = getTodayDateString()
+                if (currentToday != lastSystemToday) {
+                    if (_selectedDate.value == lastSystemToday) {
+                        _selectedDate.value = currentToday
+                    }
+                    lastSystemToday = currentToday
+                }
+
                 val user = getUserUseCase()
                 if (user == null) {
                     _uiState.value = DashboardUiState.Error("Usuário não cadastrado")
